@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogClose, DialogContent, DialogFooter,DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
+import { Button } from "@/src/components/ui/button";
+import { Dialog, DialogClose, DialogContent, DialogFooter,DialogHeader, DialogTitle, DialogTrigger} from "@/src/components/ui/dialog";
 import { ProductsType } from "@/src/types/products";
 import React, { useState } from "react";
 import AddProductSelect from "../add-product-select/AddProductSelect";

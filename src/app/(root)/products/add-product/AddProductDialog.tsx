@@ -23,7 +23,7 @@ export function AddProductDialog({onSelect}: {onSelect: (product: ProductsType) 
     <Dialog open={showDialog} onOpenChange={setShowDialog}>
 
       <DialogTrigger asChild>
-        <Button variant="outline">Добавяне на продукт</Button>
+        <Button className="cursor-pointer" variant="outline">Добавяне на продукт</Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-sm">
@@ -38,10 +38,10 @@ export function AddProductDialog({onSelect}: {onSelect: (product: ProductsType) 
 
           <DialogFooter className="mt-5">
             <DialogClose asChild>
-              <Button variant="outline">Отказ</Button>
+              <Button className="cursor-pointer" variant="outline">Отказ</Button>
             </DialogClose>
 
-            <Button type="submit">Добавяне</Button>
+            <Button className="cursor-pointer" type="submit">Добавяне</Button>
           </DialogFooter>
 
         </form>

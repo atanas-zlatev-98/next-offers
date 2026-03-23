@@ -22,9 +22,14 @@ export default function ProductItem({product,setProducts,onRemove}: {product: Pr
 
       <div>
         <input
-          className="w-16 text-black font-bold text-xl"
-          value={product.value}
-          onChange={(e) => handleChange("value", Number(e.target.value))}
+        type="number"
+        min={0}
+          className="field-sizing-content text-black font-bold text-xl [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          value={product.value === 0 ? '' : product.value}
+          onChange={(e) => {
+    const parsed = Number(e.target.value);
+    if (!isNaN(parsed)) handleChange('value', parsed);
+  }}
         />
 
         <select

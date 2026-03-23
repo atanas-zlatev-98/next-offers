@@ -4,8 +4,12 @@ import { useState } from "react";
 import { ProductsType } from "@/src/types/products";
 import ProductItem from "./products/product-item/product-item";
 import {ErrorDialog} from "./products/error-dialog/ErrorDialog";
+import dynamic from 'next/dynamic';
+import { OfferDocument } from "./offerDocument/OfferDocument";
+import { Button } from "@/src/components/ui/button";
 
 export default function Home() {
+
   const [products, setProducts] = useState<ProductsType[]>([]);
   const [errorOpen, setErrorOpen] = useState(false);
 
@@ -18,6 +22,8 @@ export default function Home() {
 
     setProducts((prev) => [...prev, product]);
   };
+
+  const PDFDownloadLink = dynamic(() => import('@react-pdf/renderer').then((mod) => mod.PDFDownloadLink),{ ssr: false });
 
   return (
    <div className="flex items-center max-w-7xl w-full p-10 justify-center bg-white flex-col gap-5">
@@ -48,6 +54,22 @@ export default function Home() {
       <ProductItem key={product.id} product={product} />
     ))}
   </div>
+
+  {products.length > 0 && (
+  <PDFDownloadLink
+    document={<OfferDocument products={products} />}
+    fileName="Оферта.pdf"
+  >
+    {({ loading }) => (
+      <Button
+        className="mt-4 px-6 py-2 text-white rounded disabled:opacity-50"
+        disabled={loading}
+      >
+        {loading ? 'Генериране...' : 'Изтегли оферта (PDF)'}
+      </Button>
+    )}
+  </PDFDownloadLink>
+)}
 </div>
   );
 }

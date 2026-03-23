@@ -1,4 +1,4 @@
 export type ProductsType = {
-    name: string,
-    price: number,
+    label: string,
+    value: number,
 }

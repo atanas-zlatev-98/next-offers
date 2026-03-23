@@ -8,7 +8,6 @@ export default function Home(){
     const [products, setProducts] = useState<ProductsType[]>([]);
 
     const selectHandler = (product: ProductsType) =>{
-        console.log(product)
         setProducts((prev)=>[...prev,product]);
     }
 
@@ -19,8 +18,8 @@ export default function Home(){
 
             {products.map((product, index)=>(
                 <div key={index} className="p-4 bg-gray-100 rounded-md">
-                    <h2 className="text-xl font-semibold">{product.name}</h2>
-                    <p className="text-gray-600">${product.price}</p>
+                    <h2 className="text-xl font-semibold">{product.label}</h2>
+                    <p className="text-gray-600">{product.value}</p>
                 </div>
             ))}
         </div>

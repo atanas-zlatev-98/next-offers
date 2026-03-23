@@ -1,39 +1,46 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
+import { ProductsType } from "@/src/types/products";
+import React, { useState } from "react";
 
-export function AddProductDialog() {
+export function AddProductDialog({onSelect}: {onSelect: (product: ProductsType) => void}) {
+
+    const [showDialog, setShowDialog] = useState(false);
+
+  const setProduct = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSelect({
+      name: "Sample Product",
+      price: 19.99,
+    });
+    setShowDialog(false); 
+  };
   return (
-    <Dialog>
-      <form>
-        <DialogTrigger asChild>
-          <Button variant="outline">Open Dialog</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-sm">
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re
-              done.
-            </DialogDescription>
-          </DialogHeader>
-
+    <Dialog open={showDialog} onOpenChange={setShowDialog}>
+      <DialogTrigger asChild>
+        <Button variant="outline">Добавяне на продукт</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-sm">
+        <DialogHeader>
+          <DialogTitle>Добавяне на продукт</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={setProduct}>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">Отказ</Button>
             </DialogClose>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit">Добавяне</Button>
           </DialogFooter>
-        </DialogContent>
-      </form>
+        </form>
+      </DialogContent>
     </Dialog>
-  )
+  );
 }

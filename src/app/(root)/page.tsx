@@ -13,6 +13,10 @@ export default function Home() {
   const [products, setProducts] = useState<ProductsType[]>([]);
   const [errorOpen, setErrorOpen] = useState(false);
 
+  const removeProductHandler = (id: number) => {
+    setProducts((prev)=> prev.filter((p) => p.id !== id));
+  }
+
   const selectHandler = (product: ProductsType) => {
 
     if(products.some((p) => p.id === product.id)) {
@@ -28,13 +32,14 @@ export default function Home() {
   return (
    <div className="flex items-center max-w-7xl w-full p-10 justify-center bg-white flex-col gap-5">
 
-        <ErrorDialog open={errorOpen} onClose={() => setErrorOpen(false)} />
+      <ErrorDialog open={errorOpen} onClose={() => setErrorOpen(false)} />
 
     <h1 className="text-4xl font-bold text-black">
         Създаване на оферти
     </h1>
 
   <div className="flex flex-col justify-center items-center gap-5">
+
     {products.length <= 0 && (
       <p className="text-gray-500">
         Няма добавени продукти. Моля, добавете продукт.
@@ -45,21 +50,19 @@ export default function Home() {
   </div>
 
   <div className="flex flex-col w-full">
+
     {products.length > 0 && <div className="flex bg-gray-50 p-2 ps-4 pe-4 rounded justify-between w-full items-center">
         <h1 className="font-bold text-2xl text-black p-2 rounded">Продукт</h1>
         <h1 className="font-bold text-2xl text-black p-2 rounded">Цена на продукта</h1>
     </div> }
    
     {products.map((product) => (
-      <ProductItem key={product.id} product={product} setProducts={setProducts} />
+      <ProductItem key={product.id} product={product} setProducts={setProducts} onRemove={removeProductHandler} />
     ))}
+
   </div>
 
-  {products.length > 0 && (
-  <PDFDownloadLink
-    document={<OfferDocument products={products} />}
-    fileName="Оферта.pdf"
-  >
+  {products.length > 0 && ( <PDFDownloadLink document={<OfferDocument products={products} />} fileName="Оферта.pdf">
     {({ loading }) => (
       <Button
         className="mt-4 px-6 py-2 text-white rounded disabled:opacity-50"

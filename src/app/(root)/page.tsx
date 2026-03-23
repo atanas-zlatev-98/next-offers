@@ -1,11 +1,11 @@
 "use client";
-import { AddProductDialog } from "./products/add-product/AddProductDialog";
+import { AddProductDialog } from "../../components/products/add-product/AddProductDialog";
 import { useState } from "react";
 import { ProductsType } from "@/src/types/products";
-import ProductItem from "./products/product-item/product-item";
-import {ErrorDialog} from "./products/error-dialog/ErrorDialog";
+import ProductItem from "../../components/products/product-item/product-item";
+import {ErrorDialog} from "../../components/products/error-dialog/ErrorDialog";
 import dynamic from 'next/dynamic';
-import { OfferDocument } from "./offerDocument/OfferDocument";
+import { OfferDocument } from "../../components/shared/offerDocument/OfferDocument";
 import { Button } from "@/src/components/ui/button";
 
 export default function Home() {

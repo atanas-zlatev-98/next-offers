@@ -51,7 +51,7 @@ export default function Home() {
     </div> }
    
     {products.map((product) => (
-      <ProductItem key={product.id} product={product} />
+      <ProductItem key={product.id} product={product} setProducts={setProducts} />
     ))}
   </div>
 

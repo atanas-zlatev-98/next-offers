@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 12,
+    fontWeight:'bold',
   },
 });
 
@@ -66,7 +67,7 @@ export const OfferDocument = ({ products }: { products: ProductsType[] }) => {
         {products.map((product) => (
           <View key={product.id} style={styles.row}>
             <Text style={styles.text}>{product.label}</Text>
-            <Text style={styles.text}>{product.value} лв.</Text>
+            <Text style={styles.text}>{product.value} {product.unit === "euro-br" ? "€ / бр." : "€ / кг."}</Text>
           </View>
         ))}
       </Page>

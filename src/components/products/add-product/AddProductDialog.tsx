@@ -26,7 +26,7 @@ export function AddProductDialog({onSelect}: {onSelect: (product: ProductsType) 
         <Button className="cursor-pointer" variant="outline">Добавяне на продукт</Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-sm">
+      <DialogContent className="top-4 translate-y-0 sm:top-1/2 sm:-translate-y-1/2 sm:max-w-sm">
 
         <DialogHeader>
           <DialogTitle>Добавяне на продукт</DialogTitle>

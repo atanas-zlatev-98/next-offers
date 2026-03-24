@@ -11,6 +11,8 @@ import { Button } from "@/src/components/ui/button";
 export default function Home() {
 
   const [products, setProducts] = useState<ProductsType[]>([]);
+  const [manufacturer, setManufacturer] = useState<string>('');
+
   const [errorOpen, setErrorOpen] = useState(false);
 
   const removeProductHandler = (id: number) => {
@@ -44,7 +46,14 @@ export default function Home() {
           Няма добавени продукти. Моля, добавете продукт.
         </p>
       )}
-      <AddProductDialog onSelect={selectHandler} />
+
+      <div className="flex gap-5">
+        <AddProductDialog onSelect={selectHandler} />
+      </div>
+      {products.length > 0 && (
+          <input type="text" className="flex w-full border text-2xl p-3 rounded md:w-1/2" value={manufacturer} onChange={(e) => setManufacturer(e.target.value)} placeholder="Въведете производител"/>
+       
+      )}
     </div>
 
     <div className="flex flex-col w-full">
@@ -66,7 +75,7 @@ export default function Home() {
     </div>
 
     {products.length > 0 && (
-      <PDFDownloadLink document={<OfferDocument products={products} />} fileName="Оферта.pdf">
+      <PDFDownloadLink document={<OfferDocument manufacturer={manufacturer} products={products} />} fileName="Оферта.pdf">
         {({ loading }) => (
           <Button
             className="w-full md:w-auto mt-4 px-6 py-2 text-white rounded disabled:opacity-50 cursor-pointer"
